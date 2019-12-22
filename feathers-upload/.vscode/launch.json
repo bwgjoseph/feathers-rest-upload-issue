@@ -1,0 +1,110 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    // Run this as a standalone
+    // To kill vscode 9229, run `netstat -ano | find "9229"
+    // then `taskkill /pid <PORT> /f
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch tsnd",
+      "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/ts-node-dev",
+      "runtimeArgs": [
+        "--inspect",
+        "--respawn",
+        "--no-notify",
+        "--transpileOnly",
+        "./src"
+      ],
+      "restart": true,
+      "protocol": "inspector",
+      "internalConsoleOptions": "openOnSessionStart",
+      "port": 9229,
+    },
+    // Run `npm run debug` first
+    // then attach this
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "Attach tsnd",
+      "port": 9229,
+      "restart": true,
+      "protocol": "inspector",
+      "cwd": "${workspaceRoot}"
+    },
+    // Debug all mocha test using ts-mocha
+    {
+      "name": "Launch ts-mocha All",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/ts-mocha",
+      "runtimeArgs": [
+        "--timeout", // default 2000
+        "999999",
+        "--colors",
+        "--bail", // terminates the run after the first failed test
+        "${workspaceFolder}/test/**/*.test.ts",
+      ],
+      "protocol": "inspector",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    },
+    // Debug current mocha test file using ts-mocha
+    // http://www.matthiassommer.it/programming/testing/debug-your-mocha-unit-test-in-visual-studio-code/
+    // https://gist.github.com/joelharkes/8a015929c1bef2430512b6ad1e1c1c0c
+    // https://stackoverflow.com/questions/30018271/javascript-standard-style-does-not-recognize-mocha
+    {
+      "name": "Launch ts-mocha File",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/ts-mocha",
+      "runtimeArgs": [
+        "--timeout", // default 2000
+        "999999",
+        "--colors",
+        "--bail", // terminates the run after the first failed test
+        "${file}"
+      ],
+      "protocol": "inspector",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    },
+    // Debug all mocha test
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch mocha All",
+      "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
+      "args": [
+        "-r",
+        "ts-node/register",
+        "--timeout",
+        "999999",
+        "--colors",
+        "${workspaceFolder}/test/**/*.test.ts",
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    },
+    // Debug current mocha test file
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch mocha File",
+      "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
+      "args": [
+        "-r",
+        "ts-node/register",
+        "--timeout",
+        "999999",
+        "--colors",
+        "${file}",
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    }
+  ]
+}
