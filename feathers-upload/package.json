@@ -73,7 +73,7 @@
     "eslint-import-resolver-typescript": "^2.0.0",
     "eslint-plugin-import": "^2.19.1",
     "eslint-plugin-sonarjs": "^0.5.0",
-    "mocha": "^6.2.2",
+    "mocha": "^10.2.0",
     "nyc": "^14.1.1",
     "shx": "^0.3.2",
     "ts-mocha": "^6.0.0",
